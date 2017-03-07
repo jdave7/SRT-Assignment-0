@@ -1,0 +1,106 @@
+---
+title: "SRT Assignment 0"
+author: "Jay Dave"
+output: pdf_document
+---
+References 
+https://cran.r-project.org/doc/contrib/Torfs+Brauer-Short-R-Intro.pdf
+```{R}
+#3.1 Calculating life spent in College.
+((2016-2014)/(2014-1996))*100
+```
+```{R}
+#3.2 Using Variables on 3.1
+year_start = 2016
+base_year = 2014
+year_born = 1996
+((year_start-base_year)/(base_year-year_born)) * 100
+```
+```{R}
+#3.4 Functions
+a = c(4,5,8,11)
+sum(a)
+```
+
+```{R}
+
+#3.5 Plots
+x = rnorm(100)
+plot(x)
+```
+
+```{R}
+#4 Help and Documentations
+help(sqrt)
+```
+```{R}
+#5 Scripts
+source("firstscript.R")
+```
+```{R}
+#6.2 Matrices
+P = seq(from=31,to=60,by=1)
+Q = matrix(data=P,ncol=5)
+Q
+```
+```{R}
+#6.3 Data frames
+x1 = rnorm(100)
+x2 = rnorm(100)
+x3 = rnorm(100)
+t = data.frame(a = x1, b = x1+x2, c = x1+x2+x3)
+plot(t)
+```
+```{R}
+#7 Graphics -- Adds custom colors to your graph.
+plot(t$a, type="l", ylim=range(t),lwd=3, col=rgb(1,0,0,0.3))
+lines(t$b, type="s", lwd=2,col=rgb(0.3,0.4,0.3,0.9))
+points(t$c, pch=20, cex=4,col=rgb(0,0,1,0.3))
+```
+
+```{R}
+#8 Reading and writing data files.
+d2 = read.table(file="tst1.txt", header=TRUE)
+change = d2[2] * 5
+write.table(change,file="tst2.txt",row.names=FALSE)
+```
+
+```{R}
+#9 Not available data #[1] NaN
+y = rnorm(100)
+p = sqrt(y)
+mean(p, na.rm=TRUE)
+```
+
+```{R}
+#10 Classes
+date1=strptime( c("20150225230000",
+                  "20160226000000", "20170226010000"),
+                format="%Y%m%d%H%M%S")
+y = c(6,8,4)
+plot(date1,y)
+```
+
+```{R}
+#11.2 for loops
+vector = c(seq(from=1,to=100,by=1))
+for(i in vector){
+  if ( (i < 5) | (i > 90) ){
+    vector[i] = i * 10
+  }else{
+    vector[i] = i * 0.1
+  }
+}
+```
+```{R}
+#Final Todo without for loop
+fun1 = function(vector)
+{
+  vector<-ifelse(vector>90 | vector<5,vector*5,vector*0.1)
+  vector
+}
+
+vector = c(2,5,6,94)
+fun1(vector)
+
+```
